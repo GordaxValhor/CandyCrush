@@ -6,6 +6,7 @@ M= np.random.randint(5, size=(6,6))
 rows = M.shape[0]
 cols = M.shape[0]
 print(cols)
+print(rows)
 #functii
 def culoare(i,j):
     alb =  '\u001b[30m'
@@ -50,20 +51,25 @@ def eliminare_p(start,finish,linie):
     for j in range(start,finish):
         M[linie][j]=0
     print('LINIE:',linie)
+    print('s',start)
+    print('f',finish)
     for j in range(start,finish):
         for i in range(linie,-1,-1):
-            print(i)
             if(M[i][j]!=0):
+                print('nr la care suntem:',M[i][j])
                 if(M[i+1][j]==0):
-                    print('da')
-                    nr=2
+                    nr=i+1 #ne arata pana la ce linie trebuie sa coboare numarul
                     ok=1
                     while(ok!=0):
                         if(M[nr][j]==0):
                             ok=1
                             nr+=1
+                            if(nr==rows):
+                                ok=0
                         else: ok=0
-                    M[nr+1][j]==M[i][j]
+                    print('unde mutam: ',nr-1)
+                    M[nr-1][j]=M[i][j]
+                    M[i][j]=0
                 else:
                     M[i+1][j]=M[i][j]
                     M[i][j]=0
@@ -81,6 +87,4 @@ afisareM(rows,cols)
 cautare_p()
 print('\nAfisare dupa eliminare p:\n')
 afisareM(rows,cols)
-cautare_p()
-print('\nAfisare dupa eliminare p:\n')
-afisareM(rows,cols)
+
