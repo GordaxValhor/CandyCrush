@@ -2,11 +2,9 @@ import numpy as np
 
 #declarare matrice
 
-M= np.random.randint(5, size=(11,11))
+M= np.random.randint(5, size=(11,11)) #generare random a numerelos din matrice
 rows = M.shape[0]
 cols = M.shape[0]
-print(cols)
-print(rows)
 scor=0
 
 #functii
@@ -42,7 +40,6 @@ def cautare_p_l():
                         if(k==cols-1 and M[i,j]==M[i,k]):
                             nr_c=nr_c+1
                     if(nr_c==3):
-                        print('avem')
                         #pentru formele complexe L T
                         if(M[i,j]==M[i-1,j]):
                             #if(i>0):
@@ -53,14 +50,11 @@ def cautare_p_l():
                                     w-=1
                                     if(w==0 and M[i,j]==M[w,j]):
                                         nr_l=nr_l+1
-                                print('linia:',i)
-                                print('nr_l',nr_l)
                                 if(nr_l==3):
                                     poz_s=j
                                     poz_f=k #k ==3 deci k o sa fie finish pentru ambele foruri
                                     linie=i
                                     ce='1'
-                                    print(poz_f)
                                     scor=scor+20
                                     eliminare_p_c(poz_s,poz_f,linie,ce)
                         elif(M[i,j]==M[i-1,j+2]):
@@ -72,14 +66,11 @@ def cautare_p_l():
                                     w-=1
                                     if(w==0 and M[i,j]==M[w,j+2]):
                                         nr_l=nr_l+1
-                                print('linia:',i)
-                                print('nr_l',nr_l)
                                 if(nr_l==3):
                                     poz_s=j
                                     poz_f=k # k reprezinta POZITIA deci k o sa fie finish pentru ambele foruri
                                     linie=j
                                     ce='2'
-                                    print(poz_f)
                                     scor=scor+20
                                     eliminare_p_c(poz_s,poz_f,linie,ce)
                         if(i<rows-2):
@@ -91,14 +82,11 @@ def cautare_p_l():
                                     w+=1
                                     if(w==rows-1 and M[i,j]==M[w,j]):
                                         nr_l=nr_l+1
-                                print('linia:',i)
-                                print('nr_l',nr_l)
                                 if(nr_l==3):
                                     poz_s=j
                                     poz_f=k # k reprezinta POZITIA deci k o sa fie finish pentru ambele foruri
                                     linie=i
                                     ce='3'
-                                    print(poz_f)
                                     scor=scor+20
                                     eliminare_p_c(poz_s,poz_f,linie,ce)
                             elif(M[i,j]==M[i+1,j+2]):
@@ -109,14 +97,11 @@ def cautare_p_l():
                                     w+=1
                                     if(w==rows-1 and M[i,j]==M[w,j]):
                                         nr_l=nr_l+1
-                                print('linia:',i)
-                                print('nr_l',nr_l)
                                 if(nr_l==3):
                                     poz_s=j
                                     poz_f=k #k reprezinta POZITIA deci k o sa fie finish pentru ambele foruri
                                     linie=i
                                     ce='4'
-                                    print(poz_f)
                                     scor=scor+20
                                     eliminare_p_c(poz_s,poz_f,linie,ce)
                             elif(M[i,j]==M[i+1][j+1]):
@@ -127,30 +112,27 @@ def cautare_p_l():
                                     w+=1
                                     if(w==rows-1 and M[i,j]==M[w,j]):
                                         nr_l=nr_l+1
-                                print('linia:',i)
-                                print('nr_l',nr_l)
                                 if(nr_l==3):
                                     poz_s=j
                                     poz_f=k #k reprezinta POZITIA deci k o sa fie finish pentru ambele foruri
                                     linie=i
                                     ce='5'
-                                    print(poz_f)
                                     scor=scor+30
                                     eliminare_p_c(poz_s,poz_f,linie,ce)
-                if(nr_c>=3):
-                    if(nr_c==3):
-                        scor=scor+5
-                    if(nr_c==4):
-                        scor=scor+10
-                    if(nr_c==5):
-                        scor=scor+50
-                    if(k==cols-1 and M[i,j]==M[i,k]):
-                            k+=1
-                    poz_s=j
-                    poz_f=k
-                    linie=i
-                    ce='linie'
-                    eliminare_p(poz_s,poz_f,linie,ce)
+                    if(nr_c>=3):
+                            if(nr_c==3):
+                                scor=scor+5
+                            if(nr_c==4):
+                                scor=scor+10
+                            if(nr_c==5):
+                                scor=scor+50
+                            if(k==cols-1 and M[i,j]==M[i,k]):
+                                    k+=1
+                            poz_s=j
+                            poz_f=k
+                            linie=i
+                            ce='linie'
+                            eliminare_p(poz_s,poz_f,linie,ce)
 
 
 def cautare_p_c():
@@ -188,8 +170,6 @@ def eliminare_p(start,finish,linie,ce):
         for i in range(start,finish):
             M[i][linie]=0
         #reordonare
-        print('s',start)
-        print('f',finish)
         j=linie #aici ii dam  coloana pe care sa faca reordonarea
         for i in range(finish-1,-1,-1):
                 if(M[i][j]!=0):
@@ -212,8 +192,6 @@ def eliminare_p(start,finish,linie,ce):
         for j in range(start,finish):
                 M[linie][j]=0
         #reordonare
-        print('s',start)
-        print('f',finish)
         for j in range(start,finish):
             for i in range(linie,-1,-1):
                 if(M[i][j]!=0):
@@ -261,8 +239,6 @@ def eliminare_p_c(start,finish,linie,ce):
                 M[i][finish-2]=0
 
     #reordonare
-    print('s',start)
-    print('f',finish)
     for j in range(start,finish):
         for i in range(linie,-1,-1):
             if(M[i][j]!=0):
@@ -289,16 +265,19 @@ def afisareM(rows,cols):
         print('\n')
 
 #main
-
 print('Scorul de inceput este:',scor)
 print('Matricea generata random:\n')
 afisareM(rows,cols)
-cautare_p_l()
-print('\nAfisare dupa eliminare p/complex de pe linii:\n')
-afisareM(rows,cols)
-print('\nscor:',scor)
-cautare_p_c()
-print('\nAfisare dupa eliminare p de pe coloana:\n')
-afisareM(rows,cols)
-print('\nscor:',scor)
+avem=1
+while (avem==1):
+    old_scor=scor
+    cautare_p_l()
+    cautare_p_c()
+    print('\nAfisare dupa eliminare p/complex de pe linii si coloane:\n')
+    afisareM(rows,cols)
+    if(scor!=old_scor):
+        avem=1
+        print('\nscor:',scor)
+    else: avem=0
+print("\n Scor final:",scor)
 
